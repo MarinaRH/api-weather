@@ -103,7 +103,7 @@ function weatherReport(latitude, longitude) {
 			// Agregando datos para cada dia de la semana
       $("#forecast").append(
 				'<li class=" center shade-'+  skicons +'"><div><div><div class="front card"><div>' +
-					"<div class='graphic'><h3 class='center'>"+ day + "</h3><br><canvas class=" + skicons + "></canvas></div>" +
+					"<div class='graphic'><h3 class='center'>" + day + "</h3><br><canvas class=" + skicons + "></canvas></div>" +
 					"<br><div><b>Day</b>:&nbsp&nbsp&nbsp&nbsp&nbsp " + date.toLocaleDateString() + "</div>" +
 					"<div><b>Temperature</b>:&nbsp&nbsp&nbsp&nbsp&nbsp " + temp  + 'C'+'&#176'+"</div>" +
 					"<div><b>Max Temp.</b>:&nbsp&nbsp&nbsp&nbsp&nbsp " + tempMax + 'C'+'&#176'+"</div>" +
@@ -139,8 +139,8 @@ function weatherReport(latitude, longitude) {
     // Agregando datos para el dia en curso
 
     $("#forecastWeek").append(
-      '<div class="center shade-'+ forecast.daily.data[0].icon +'"><div"><div><div class="front card"><div>' + "<div class='graphic'><h3 class='center'>"+ day + "</h3><br><br><canvas class=" + forecast.daily.data[0].icon +"></canvas></div><br><div><b>Day</b>: &nbsp&nbsp&nbsp&nbsp&nbsp " + new Date(forecast.daily.data[0].time * 1000).toLocaleDateString() + "</div>" + "<div><b>Temperature</b>: &nbsp&nbsp&nbsp&nbsp&nbsp" + Math.round(forecast.hourly.data[0].temperature)+'C'+'&#176' + "</div>" +
-      "<div><b>Max Temp.</b>: &nbsp&nbsp&nbsp&nbsp&nbsp" + Math.round(forecast.daily.data[0].temperatureMax) + 'C'+'&#176'+ "</div>" +
+      '<div class="center shade-'+ forecast.daily.data[0].icon +'"><div"><div><div class="front card"><div>' + "<div class='graphic'><h3 class='center'>" + days[date.getDay()] + "</h3><br><br><canvas class=" + forecast.daily.data[0].icon +"></canvas></div><br><div><b>Day</b>: &nbsp&nbsp&nbsp&nbsp&nbsp " + new Date(forecast.daily.data[0].time * 1000).toLocaleDateString() + "</div>" + "<div><b>Temperature</b>: &nbsp&nbsp&nbsp&nbsp&nbsp" + Math.round(fToC(forecast.hourly.data[0].temperature)) + 'C' + '&#176' + "</div>" +
+      "<div><b>Max Temp.</b>: &nbsp&nbsp&nbsp&nbsp&nbsp" + Math.round(fToC(forecast.daily.data[0].temperatureMax)) + 'C' + '&#176' + "</div>" +
       "<div><b>Humidity</b>: &nbsp&nbsp&nbsp&nbsp&nbsp" + Math.round(forecast.daily.data[0].humidity*100) +'%' + "</div>" +
       '<p class="summary">' + forecast.daily.data[0].summary + '</p>' +
       '</div></div><div class="back card"></div></div></div></div>'

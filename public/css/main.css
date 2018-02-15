@@ -5,7 +5,12 @@
 }
 
 section.bg {
-	height: 100vh;
+  background-image: url(https://source.unsplash.com/random/?nature);
+  background-position: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  opacity: .8;
+	height: 100%;
 	width: 100%;
 }
 /* reutilizables */
@@ -22,7 +27,7 @@ section.bg {
 }
 
 ::-webkit-input-placeholder {
-	color: rgba(201, 201, 201, 0.534);
+	color: rgba(201, 201, 201, 0.74);
 }
 
 :-moz-placeholder {
@@ -30,11 +35,11 @@ section.bg {
 }
 
 ::-moz-placeholder {
-	color: #C9C9C9;
+	color: rgba(201, 201, 201, 0.76);
 }
 
 :-ms-input-placeholder {
-	color: rgba(201, 201, 201, 0.452);
+	color: rgba(201, 201, 201, 0.74);
 }
 
 legend {
@@ -73,11 +78,17 @@ input[type="text"] {
 	margin: 5px;
 	padding: 10px;
 	font-weight: 700;
-	font-size: 1em;
+	font-size: 1.1em;
   width: 75%;
-  background-color: rgba(0, 0, 0, 0.425);
+  color: white;
+  background-color: rgba(17, 16, 16, 0.795);
 }
 
+input#celsius {
+  background-color: black !important;
+  width: 30px !important;
+
+}
 button:not(#back) {
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.15);
 	/* max-width: 410px; */
@@ -165,7 +176,7 @@ button:not(#next):hover {
 
 div.screen {
   width: 70%;
-	background: rgba(2, 78, 68, 0.473);
+	background: rgba(2, 63, 55, 0.664);
 	color: white;
 	font-weight: bolder;
 }
@@ -213,8 +224,6 @@ div.screen {
 	margin: 0.19;
 }
 
-
-
 .graphic {
 	box-shadow: 0 1px 0 rgba(71, 71, 71, 0.48), 0 1px 0 rgba(255, 255, 255, 0.1);
 	margin-bottom: 1rem;
@@ -234,7 +243,7 @@ div.screen {
 	border-radius: 2px;
 	margin: 1rem 0.5rem;
 	padding: 0.5rem;
-	background: #114856be;
+	background: #157279be;
 }
 
 .card {
@@ -247,9 +256,8 @@ div.screen {
 }
 
 input[type="checkbox"] {
-	position: absolute;
-	opacity: 0;
-	z-index: -1;
+  z-index: -1;
+  background-color: black !important;
 }
 input[type="checkbox"]:active + label {
 	padding-left: 10px;
@@ -271,12 +279,13 @@ label[for="celsius"] {
 	position: relative;
 	display: inline-block;
 	margin-bottom: 4px;
-	padding-top: 4px;
+	padding-top: 15px;
 	padding-bottom: 4px;
-	padding-left: 30px;
+	padding-left: 7px;
 	padding-right: 10px;
 	cursor: pointer;
 }
+/* 
 label[for="celsius"]::before {
 	content: " ";
 	position: absolute;
@@ -286,10 +295,11 @@ label[for="celsius"]::before {
 	display: block;
 	width: 20px;
   height: 20px;
-	border: 2px solid rgba(26, 117, 98, 0.822);
+	border: 3px solid rgb(0, 0, 0);
 	border-radius: 2px;
 	z-index: -1;
-}
+} */
+
 
 .list-reset {
 	list-style-type: none;
