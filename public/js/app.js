@@ -149,7 +149,6 @@ function weatherReport(latitude, longitude) {
   });
 }
 
-
 // eventos de buttons
 $('button').on('click', function(e) {
   var lat = $('#latitude').val(),
@@ -186,11 +185,12 @@ $('body').on('click', '#back', function() {
 
 // Api Google maps
 
+
 function insertGoogleScript() {
   var googleApi = document.createElement('script'),
     cityName = 'AIzaSyAnhhd9cMSlPq7sss2LM2TNnp5JiTcx78s';
-  googleApi.src = 'https://maps.googleapis.com/maps/api/js?key=' + cityName + '&callback=initGoogleAPI&libraries=places,geometry';
-  document.body.appendChild(googleApi);
+    googleApi.src = 'https://maps.googleapis.com/maps/api/js?key=' + cityName + '&callback=initGoogleAPI&libraries=places,geometry';
+    document.body.appendChild(googleApi);
 }
 
 

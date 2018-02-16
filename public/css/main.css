@@ -1,6 +1,5 @@
 * {
 	margin: auto;
-	padding: auto;
 	font: normal 'Alegreya Sans', sans-serif;
 }
 
@@ -8,16 +7,15 @@ section.bg {
   background: url(https://source.unsplash.com/random/?nature) fixed center; 
   background-size: cover;
   width: 100%;
-  height:100vh;
+  height:100%;
 	opacity: 0.8;
 }
 
 .container-flex-column {
 	flex-direction:column;
   justify-content: center;
-  padding: 2em;
-  box-sizing: border-box;
-  height: 100vh;
+  padding: 2.2em 1em;
+  height: 100%;
 } 
 
 /* reutilizables */
@@ -82,7 +80,6 @@ input[type="text"] {
 
 button:not(#back) {
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.15);
-	/* max-width: 410px; */
 	margin-left: 6%;
 	padding: 13px;
 	-webkit-transition: 200ms all ease-in-out;

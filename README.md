@@ -2,7 +2,7 @@
 
 * **Track:** _ESPECIALIZACION_
 * **Curso:** _CONSTRUYE UNA SINGLE PAGE APP (SPA) MULTI-USUARIO CONSUMIENDO DATA REMOTA_
-* **Unidad:** _¿QUÉ SIGNIFICA TRAER DATOS DE UN SERVIDOR ASÍNCRONAMENTE?_
+* **Unidad:** _JUGANDO CON WEB APIS_
 
 ***
 
@@ -23,7 +23,11 @@
 
 6. A partir de este punto empezamos a crear nuestras estructura principal **index.html**,donde colocaremos los input para obtener las coordenadas del lugar que queremos.
 
-7. Creamos las funciones donde utilizamos las ApiKeys y obtenemos los datos del clima mediante un **JSON**,que sera mostrado en la página.
+7. Mediante el Api de **Google Maps** obtenemos la latitud y altitud de lugar que deseamos.
+
+8. Con el Api de **Dark Sky Weather** obtenemos la temperatura actual ,la temperatura máxima,el porcentaje de humedad y una pequeña descripcion del clima.Tambien tenemos la opcion de ver la temperatura que se tendrá en el resto de la semana.
+
+9. Utilizando el Api de **Unplash** obtendremos imagenes aleatorias que serán colocadas como fondo de la página,en este caso utilizando la cátegoria de naturaleza.
 
 ## DEMO
 
@@ -33,13 +37,13 @@
 
 ## RECURSOS
 
-* Html,css,Javascript
-* Node
-* Express (dependencia)
-* gitignore.
-* Api Google maps
-* Api Darck sky Weather.
-* Api unsplash.
+* Html,css,Javascript,
+* Node,
+* Express (dependencia),
+* gitignore,
+* Api Google maps,
+* Api Dark sky Weather,
+* Api Unsplash.
 
 ## Integrantes(GitHub)
 
