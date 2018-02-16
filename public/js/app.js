@@ -72,11 +72,11 @@ function weatherReport(latitude, longitude) {
     friday = [],
     saturday = [];
 
-  var isCelsiusChecked = $('#celsius:checked').length > 0;
+  var isCelsiusChecked = $('#celsius:checked');
 
-  function hourlyReport(day, selector) {
-    for (var i = 0, l = day.length; i < l; i++) {
-      $('.' + selector + ' ' + 'ul').append('<li>' + Math.round(day[i]) + '</li>');
+  function hourlyReport(days, selector) {
+    for (var i = 0, l = days.length; i < l; i++) {
+      $('.' + selector + ' ' + 'ul').append('<li>' + Math.round(days[i]) + '</li>');
     }
   }
 
