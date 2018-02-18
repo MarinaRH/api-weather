@@ -144,8 +144,8 @@ button:not(#next) {
 	margin-left: 6%;
 	padding: 13px;
 	-webkit-transition: 200ms all ease-in-out;
-	transition: 200ms all ease-in-out;
-	width: 40%;
+	transition: 100ms all ease-in-out;
+	width: 30%;
 	font-weight: 700;
 	text-transform: uppercase;
 	background: rgba(26, 117, 98, 0.822);
@@ -262,7 +262,7 @@ button:not(#next):hover {
 }
 
 .graphic canvas {
-	display: block;
+	display: inline;
 }
 
 #forecast {

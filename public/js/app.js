@@ -41,7 +41,7 @@ function skycons() {
 // convertir temperatura en celcius
 function fToC(fahrenheit) {
   var fTemp = fahrenheit,
-    fToCel = ((fTemp - 32) * 1.8).toFixed(0) + '°';
+    fToCel = (fTemp - 32) * 5 / 9;
   return fToCel;
 }
 
@@ -65,12 +65,12 @@ function weatherReport(latitude, longitude) {
   ];
 
   var sunday = [],
-    monday = [],
-    tuesday = [],
-    wednesday = [],
-    thursday = [],
-    friday = [],
-    saturday = [];
+      monday = [],
+      tuesday = [],
+      wednesday = [],
+      thursday = [],
+      friday = [],
+      saturday = [];
 
   var isCelsiusChecked = $('#celsius:checked');
 
@@ -81,14 +81,15 @@ function weatherReport(latitude, longitude) {
   }
 
   $.getJSON(apiCall, function(forecast) {
-    // los proonosticos por dias
-    for (var i = 0, l = forecast.daily.data.length; i < l - 1; i++) {
-      var date = new Date(forecast.daily.data[i].time * 1000),
+    // los pronosticos por dias
+    var data = forecast.daily.data;
+    for (var i = 0, l = data.length; i < l - 1; i++) {
+      var date = new Date(data[i].time * 1000),
         day = days[date.getDay()],
-        skicons = forecast.daily.data[i].icon,
-        time = forecast.daily.data[i].time,
-        humidity = Math.round(forecast.daily.data[i].humidity * 100),
-        summary = forecast.daily.data[i].summary,
+        skicons = data[i].icon,
+        time = data[i].time,
+        humidity = Math.round(data[i].humidity * 100)  + '%',
+        summary = data[i].summary,
         temp = Math.round(forecast.hourly.data[i].temperature),
         tempMax = Math.round(forecast.daily.data[i].temperatureMax);
       if (isCelsiusChecked) {
@@ -100,12 +101,12 @@ function weatherReport(latitude, longitude) {
 
       // Agregando datos para cada dia de la semana
       $('#forecast').append(
-        '<li class=" center shade-' + skicons + '"><div><div><div class="front card"><div>' +
+        '<li class="center shade-' + skicons + '"><div><div><div class="front card"><div>' +
 					'<div class=\'graphic\'><h3 class=\'center\'>' + day + '</h3><br><canvas class=' + skicons + '></canvas></div>' +
 					'<br><div><b>Day</b>:&nbsp&nbsp&nbsp&nbsp&nbsp ' + date.toLocaleDateString() + '</div>' +
-					'<div><b>Temperature</b>:&nbsp&nbsp&nbsp&nbsp&nbsp ' + temp + 'C' + '&#176' + '</div>' +
-					'<div><b>Max Temp.</b>:&nbsp&nbsp&nbsp&nbsp&nbsp ' + tempMax + 'C' + '&#176' + '</div>' +
-					'<div><b>Humidity</b>:&nbsp&nbsp&nbsp&nbsp&nbsp ' + humidity + '%' + '</div>' +
+					'<div><b>Temperature</b>:&nbsp&nbsp&nbsp&nbsp&nbsp ' + temp  + '°' + '</div>' +
+					'<div><b>Max Temp.</b>:&nbsp&nbsp&nbsp&nbsp&nbsp ' + tempMax   + '°' + '</div>' +
+					'<div><b>Humidity</b>:&nbsp&nbsp&nbsp&nbsp&nbsp ' + humidity + '</div>' +
 					'<p class="summary">' + summary + '</p>' +
 					'</div></div><div class="back card"></div></div></div></li>'
       );
@@ -132,18 +133,17 @@ function weatherReport(latitude, longitude) {
         hourlyReport(saturday, days[6]);
         break;
       }
-    }
+    
      
     // Agregando datos para el dia en curso
-
-    $('#forecastWeek').append(
-      '<div class="center shade-' + forecast.daily.data[0].icon + '"><div"><div><div class="front card"><div>' + '<div class=\'graphic\'><h3 class=\'center\'>' + days[date.getDay()] + '</h3><br><br><canvas class=' + forecast.daily.data[0].icon + '></canvas></div><br><div><b>Day</b>: &nbsp&nbsp&nbsp&nbsp&nbsp ' + new Date(forecast.daily.data[0].time * 1000).toLocaleDateString() + '</div>' + '<div><b>Temperature</b>: &nbsp&nbsp&nbsp&nbsp&nbsp' + Math.round(fToC(forecast.hourly.data[0].temperature)) + 'C' + '&#176' + '</div>' +
-      '<div><b>Max Temp.</b>: &nbsp&nbsp&nbsp&nbsp&nbsp' + Math.round(fToC(forecast.daily.data[0].temperatureMax)) + 'C' + '&#176' + '</div>' +
-      '<div><b>Humidity</b>: &nbsp&nbsp&nbsp&nbsp&nbsp' + Math.round(forecast.daily.data[0].humidity * 100) + '%' + '</div>' +
+        $('#forecastWeek').append(
+      '<div class=" shade-' + forecast.daily.data[0].icon + '"><div"><div><div class="front card"><div>' + '<div class=\'graphic\'><h3 class=\'center\'>' + days[date.getDay()]+ '</h3><br><br><canvas class=' + forecast.daily.data[0].icon + '></canvas></div><br><div><b>Day</b>: &nbsp&nbsp&nbsp&nbsp&nbsp ' + new Date(forecast.daily.data[0].time * 1000).toLocaleDateString() + '</div>' + '<div><b>Temperature</b>: &nbsp&nbsp&nbsp&nbsp&nbsp' + Math.round(fToC(forecast.hourly.data[0].temperature)) +'°'+ '</div>' +
+      '<div><b>Max Temp.</b>: &nbsp&nbsp&nbsp&nbsp&nbsp' + Math.round(fToC(forecast.daily.data[0].temperatureMax)) + '°' +'</div>' +
+      '<div><b>Humidity</b>: &nbsp&nbsp&nbsp&nbsp&nbsp' + Math.round(forecast.daily.data[0].humidity * 100) + '%' +'</div>' +
       '<p class="summary">' + forecast.daily.data[0].summary + '</p>' +
       '</div></div><div class="back card"></div></div></div></div>'
     );
-
+  }
     skycons();
     staggerFade();
   });
@@ -186,12 +186,7 @@ $('body').on('click', '#back', function() {
 
 // Api Google maps
 
-function insertGoogleScript() {
-  var googleApi = document.createElement('script'),
-    cityName = 'AIzaSyAnhhd9cMSlPq7sss2LM2TNnp5JiTcx78s';
-    googleApi.src = 'https://maps.googleapis.com/maps/api/js?key=' + cityName + '&callback=initGoogleAPI&libraries=places,geometry';
-    document.body.appendChild(googleApi);
-}
+
 
 function initMap() {
   var uluru = {lat: -12.145552,lng: -77.022321};
@@ -210,24 +205,14 @@ function initMap() {
     };
   };
   document.getElementById('btn').addEventListener('click', search);
-  // var myLatit = void 0,
-  // myLongit = void 0;
   var functionSuccess = function functionSuccess(position) {
-    // myLatit = position.coords.latitude;
-    // myLongit = position.coords.longitude;
-
-    // localStorage.setItem('Latitud', myLatit);
-    // localStorage.setItem('Longitud', myLongit);
     document.querySelector('#latitude').value = position.coords.latitude;
     document.querySelector('#longitude').value = position.coords.longitude;
-
     };
 
     var functionError = function functionError(error) {
     alert('Tenemos un problema con encontrar tu ubicación');
   };
-
-
 }
 
 // SearchBox Method
@@ -241,7 +226,12 @@ function initGoogleAPI() {
   });
 }
 
-
+function insertGoogleScript() {
+  var googleApi = document.createElement('script'),
+    cityName = 'AIzaSyAnhhd9cMSlPq7sss2LM2TNnp5JiTcx78s';
+    googleApi.src = 'https://maps.googleapis.com/maps/api/js?key=' + cityName + '&callback=initGoogleAPI&libraries=places,geometry';
+    document.body.appendChild(googleApi);
+}
 
 insertGoogleScript();
 
