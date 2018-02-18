@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,16 +7,16 @@
 	<link rel="stylesheet" href="css/main.css">
 	<title>App Weather</title>
 </head>
-<body>
-	<section class="bg container-flex-column">
+<body class="container-flex-column">
+	<section class="bg center">
 		<div class="screen">
 			<figure class="center">
 				<img src="assets/logo.png" alt="weather" id="logo">
-			</figure>
+      </figure>
 			<form method="get" class="form center">
+        <div id="map"></div>
 				<fieldset>
-					<legend>If searching by city the latitude and longitude input fields will autofill your coords.</legend>
-					<br>
+					<!-- <legend>If searching by city the latitude and longitude input fields will autofill your coords.</legend> -->
 					<br>
 					<ul class="list-reset">
 						<li class="form-field">
@@ -38,11 +37,14 @@
 						</li>
 					</ul>
 				</fieldset>
-				<button>Get Weather</button>
+        <button>Get Weather</button>
+        <button id="btn">Ubication</button>
 			</form>
 		</div>
 	</section>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnhhd9cMSlPq7sss2LM2TNnp5JiTcx78s&callback=initMap"
+    async defer></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/skycons/1396634940/skycons.min.js'></script>
 	<script src="js/app.js"></script>
 </body>

@@ -41,7 +41,7 @@ function skycons() {
 // convertir temperatura en celcius
 function fToC(fahrenheit) {
   var fTemp = fahrenheit,
-    fToCel = (fTemp - 32) * 5 / 9;
+    fToCel = ((fTemp - 32) * 1.8).toFixed(0) + '°';
   return fToCel;
 }
 
@@ -157,7 +157,8 @@ $('button').on('click', function(e) {
 
   if (lat && long !== '') {
     e.preventDefault();
-    $('.form').fadeOut(100, function() {
+    $('.form').
+    fadeOut(100, function() {
       weatherReport(lat, long);
       $('.screen').append('<h2 class="city">' + cityName + '</h2><br><button id="back">New Forecast</button><button id="next">Predictions of the Week</button><div id="forecastWeek"></div>');
     });
@@ -185,7 +186,6 @@ $('body').on('click', '#back', function() {
 
 // Api Google maps
 
-
 function insertGoogleScript() {
   var googleApi = document.createElement('script'),
     cityName = 'AIzaSyAnhhd9cMSlPq7sss2LM2TNnp5JiTcx78s';
@@ -193,6 +193,42 @@ function insertGoogleScript() {
     document.body.appendChild(googleApi);
 }
 
+function initMap() {
+  var uluru = {lat: -12.145552,lng: -77.022321};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 8,
+    center: uluru 
+  });
+    var marker = new google.maps.Marker({
+      position: uluru,
+      map: map
+  });
+
+  function search() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(functionSuccess, functionError);
+    };
+  };
+  document.getElementById('btn').addEventListener('click', search);
+  // var myLatit = void 0,
+  // myLongit = void 0;
+  var functionSuccess = function functionSuccess(position) {
+    // myLatit = position.coords.latitude;
+    // myLongit = position.coords.longitude;
+
+    // localStorage.setItem('Latitud', myLatit);
+    // localStorage.setItem('Longitud', myLongit);
+    document.querySelector('#latitude').value = position.coords.latitude;
+    document.querySelector('#longitude').value = position.coords.longitude;
+
+    };
+
+    var functionError = function functionError(error) {
+    alert('Tenemos un problema con encontrar tu ubicación');
+  };
+
+
+}
 
 // SearchBox Method
 function initGoogleAPI() {
@@ -204,6 +240,8 @@ function initGoogleAPI() {
     document.querySelector('#longitude').value = place.geometry.location.lng();
   });
 }
+
+
 
 insertGoogleScript();
 

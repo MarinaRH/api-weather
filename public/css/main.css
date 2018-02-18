@@ -1,5 +1,7 @@
 * {
-	margin: auto;
+	margin: 0;
+	padding: 0;
+	/* height: 100%; */
 	font: normal 'Alegreya Sans', sans-serif;
 }
 
@@ -8,15 +10,75 @@ section.bg {
   background-size: cover;
   width: 100%;
   height:100%;
-	opacity: 0.8;
+  opacity: 0.8;
+}
+
+#map {
+	height: 300px;
+	width: inherit;
 }
 
 .container-flex-column {
+  display: flex;
 	flex-direction:column;
   justify-content: center;
-  padding: 2.2em 1em;
   height: 100%;
 } 
+
+div.screen {
+  padding: 1% 15%;
+	background: rgba(2, 43, 37, 0.329);
+	color: white;
+}
+
+input[type="checkbox"] {
+	z-index: -1;
+	background-color: black !important;
+}
+
+input[type="checkbox"]:active+label {
+	padding-left: 10px;
+	color: white;
+}
+
+input[type="checkbox"]:checked+label::before {
+	top: 5px;
+	background: rgba(52, 185, 112, 0.753);
+}
+
+label[for="celsius"],
+label[for="celsius"]::before {
+	-webkit-transition: 100ms all ease-in-out;
+	transition: 100ms all ease-in-out;
+}
+
+label[for="celsius"] {
+	position: relative;
+	display: inline-block;
+	padding-top: 15px;
+	padding-left: 7px;
+	cursor: pointer;
+}
+
+button,
+input[type="text"] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border: none;
+  border-radius: 6px;
+  color: white;
+}
+
+input[type="text"] {
+	box-sizing: border-box;
+	box-shadow: 0 2px 1px rgba(252, 252, 252, 0.801);
+	margin: 3px;
+	padding: 7px;
+	font-size: 1.1em;
+	width: 70%;
+	background-color: rgba(17, 16, 16, 0.795);
+}
 
 /* reutilizables */
 
@@ -43,8 +105,8 @@ legend {
 }
 
 figure img {
-	width: 15%;
-	padding-top: 14px;
+	width: 9%;
+	padding-top: 7px;
 }
 
 fieldset {
@@ -56,26 +118,6 @@ fieldset {
 label {
 	font-weight: 400;
 	font-size: 1.3em;
-}
-
-button,
-input[type="text"] {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	border: none;
-	border-radius: 6px;
-}
-
-input[type="text"] {
-	box-sizing: border-box;
-	box-shadow: 0 2px 1px rgba(252, 252, 252, 0.801);
-	margin: 5px;
-	padding: 10px;
-	font-size: 1.1em;
-	width: 60%;
-	color: white;
-	background-color: rgba(17, 16, 16, 0.795);
 }
 
 button:not(#back) {
@@ -174,16 +216,6 @@ button:not(#next):hover {
 
 /* fin de animaciones */
 
-div.screen {
-  width: 70%;
-	background: rgba(2, 43, 37, 0.788);
-  color: white;
-}
-
-.form {
-	padding: 1rem;
-	color: white;
-}
 
 .city {
 	margin-bottom: 0;
@@ -236,7 +268,8 @@ div.screen {
 #forecast {
 	height: 100%;
 	margin: auto;
-	width: 100%;
+  width: 100%;
+  text-align: center;
 }
 
 #forecast>li,
@@ -257,37 +290,7 @@ div.screen {
 	padding-bottom: 1rem;
 }
 
-input[type="checkbox"] {
-	z-index: -1;
-	background-color: black !important;
-}
 
-input[type="checkbox"]:active+label {
-	padding-left: 10px;
-	color: white;
-}
-
-input[type="checkbox"]:checked+label::before {
-	top: 5px;
-	background: rgba(52, 185, 112, 0.753);
-}
-
-label[for="celsius"],
-label[for="celsius"]::before {
-	-webkit-transition: 100ms all ease-in-out;
-	transition: 100ms all ease-in-out;
-}
-
-label[for="celsius"] {
-	position: relative;
-	display: inline-block;
-	margin-bottom: 4px;
-	padding-top: 15px;
-	padding-bottom: 4px;
-	padding-left: 7px;
-	padding-right: 10px;
-	cursor: pointer;
-}
 
 .list-reset {
 	list-style-type: none;
