@@ -80,8 +80,32 @@ function weatherReport(latitude, longitude) {
     }
   }
 
+  switch (days) {
+    case 'Sunday':
+      hourlyReport(sunday, days[0]);
+      break;
+    case 'Monday':
+      hourlyReport(monday, days[1]);
+      break;
+    case 'Tuesday':
+      hourlyReport(tuesday, days[2]);
+      break;
+    case 'Wednesday':
+      hourlyReport(wednesday, days[3]);
+      break;
+    case 'Thursday':
+      hourlyReport(thursday, days[4]);
+      break;
+    case 'Friday':
+      hourlyReport(friday, days[5]);
+      break;
+    case 'Saturday':
+      hourlyReport(saturday, days[6]);
+      break;
+    }
+
   $.getJSON(apiCall, function(forecast) {
-    // los pronosticos por dias
+    //  pronosticos por dias
     var data = forecast.daily.data;
     for (var i = 0, l = data.length; i < l - 1; i++) {
       var date = new Date(data[i].time * 1000),
@@ -99,7 +123,7 @@ function weatherReport(latitude, longitude) {
         tempMax = Math.round(tempMax);
       }
 
-      // Agregando datos para cada dia de la semana
+      // Agregando clima para cada dia de la semana
       $('#forecast').append(
         '<li class="center shade-' + skicons + '"><div><div><div class="front card"><div>' +
         '<div class=\'graphic\'><h3 class=\'center\'>' + day + '</h3><br><canvas class=' + skicons + '></canvas></div>' +
@@ -110,47 +134,25 @@ function weatherReport(latitude, longitude) {
         '<p class="summary">' + summary + '</p>' +
         '</div></div><div class="back card"></div></div></div></li>'
       );
-      switch (days) {
-      case 'Sunday':
-        hourlyReport(sunday, days[0]);
-        break;
-      case 'Monday':
-        hourlyReport(monday, days[1]);
-        break;
-      case 'Tuesday':
-        hourlyReport(tuesday, days[2]);
-        break;
-      case 'Wednesday':
-        hourlyReport(wednesday, days[3]);
-        break;
-      case 'Thursday':
-        hourlyReport(thursday, days[4]);
-        break;
-      case 'Friday':
-        hourlyReport(friday, days[5]);
-        break;
-      case 'Saturday':
-        hourlyReport(saturday, days[6]);
-        break;
-      }
+      
+    }
     
-     
-    // Agregando datos para el dia en curso
+    // Agregando clima para el dia en curso
       $('#forecastWeek').append(
-      '<div class=" shade-' + forecast.daily.data[0].icon + '"><div"><div><div class="front card"><div>' + '<div class=\'graphic\'><h3 class=\'center\'>' + days[date.getDay()]+ '</h3><br><br><canvas class=' + forecast.daily.data[0].icon + '></canvas></div><br><div><b>Day</b>: &nbsp&nbsp&nbsp&nbsp&nbsp ' + new Date(forecast.daily.data[0].time * 1000).toLocaleDateString() + '</div>' + '<div><b>Temperature</b>: &nbsp&nbsp&nbsp&nbsp&nbsp' + Math.round(fToC(forecast.hourly.data[0].temperature)) +'°'+ '</div>' +
+      '<div class=" shade-' + forecast.daily.data[0].icon + '"><div"><div><div class="front card"><div>' + '<div class=\'graphic\'><h3 class=\'center\'>' + days[new Date(data[i].time * 1000).getDay()] + '</h3><br><br><canvas class=' + forecast.daily.data[0].icon + '></canvas></div><br><div><b>Day</b>: &nbsp&nbsp&nbsp&nbsp&nbsp ' + new Date(forecast.daily.data[0].time * 1000).toLocaleDateString() + '</div>' + '<div><b>Temperature</b>: &nbsp&nbsp&nbsp&nbsp&nbsp' + Math.round(fToC(forecast.hourly.data[0].temperature)) +'°'+ '</div>' +
       '<div><b>Max Temp.</b>: &nbsp&nbsp&nbsp&nbsp&nbsp' + Math.round(fToC(forecast.daily.data[0].temperatureMax)) + '°' +'</div>' +
       '<div><b>Humidity</b>: &nbsp&nbsp&nbsp&nbsp&nbsp' + Math.round(forecast.daily.data[0].humidity * 100) + '%' +'</div>' +
       '<p class="summary">' + forecast.daily.data[0].summary + '</p>' +
       '</div></div><div class="back card"></div></div></div></div>'
     );
-  }
+  
     skycons();
     staggerFade();
   });
 }
 
 // eventos de buttons
-$('button').on('click', function(e) {
+$('#btn-weather').on('click', function(e) {
   var lat = $('#latitude').val(),
     long = $('#longitude').val(),
     cityName = $('#city-search').val();
@@ -192,7 +194,7 @@ function insertGoogleScript() {
     document.body.appendChild(googleApi);
 }
 
-// SearchBox Method
+// Buscar una Ubicacion
 function initGoogleAPI() {
   var autocomplete = new google.maps.places.SearchBox(document.querySelector('#city-search'));
 
@@ -213,18 +215,20 @@ function initMap() {
   var marker = new google.maps.Marker({
     position: uluru,
     draggable: true,
-    map: map
+    map: map,
+    animation: google.maps.Animation.BOUNCE
   });
     marker.setMap(map);
   
-    // Para seleccionar en el mapa tu ubicacion
-
+  // Para seleccionar en el mapa tu ubicacion
   google.maps.event.addListener(marker, 'dragend', function() {
-    // alert('Latitud = '+marker.getPosition().lat()+ ', Longitud = '+marker.getPosition().lng());
+  // alert('Latitud = '+marker.getPosition().lat()+ ', Longitud = '+marker.getPosition().lng());
     document.querySelector('#latitude').value = marker.getPosition().lat();
     document.querySelector('#longitude').value = marker.getPosition().lng();
   });
 
+
+  //Obtener ubicacion actual
   function search() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(functionSuccess, functionError);
