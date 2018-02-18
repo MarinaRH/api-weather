@@ -72,7 +72,7 @@ function weatherReport(latitude, longitude) {
       friday = [],
       saturday = [];
 
-  var isCelsiusChecked = $('#celsius:checked');
+  var isCelsiusChecked = $('#celsius:checked').length>0;
 
   function hourlyReport(days, selector) {
     for (var i = 0, l = days.length; i < l; i++) {
@@ -102,15 +102,15 @@ function weatherReport(latitude, longitude) {
       // Agregando datos para cada dia de la semana
       $('#forecast').append(
         '<li class="center shade-' + skicons + '"><div><div><div class="front card"><div>' +
-					'<div class=\'graphic\'><h3 class=\'center\'>' + day + '</h3><br><canvas class=' + skicons + '></canvas></div>' +
-					'<br><div><b>Day</b>:&nbsp&nbsp&nbsp&nbsp&nbsp ' + date.toLocaleDateString() + '</div>' +
-					'<div><b>Temperature</b>:&nbsp&nbsp&nbsp&nbsp&nbsp ' + temp  + '°' + '</div>' +
-					'<div><b>Max Temp.</b>:&nbsp&nbsp&nbsp&nbsp&nbsp ' + tempMax   + '°' + '</div>' +
-					'<div><b>Humidity</b>:&nbsp&nbsp&nbsp&nbsp&nbsp ' + humidity + '</div>' +
-					'<p class="summary">' + summary + '</p>' +
-					'</div></div><div class="back card"></div></div></div></li>'
+        '<div class=\'graphic\'><h3 class=\'center\'>' + day + '</h3><br><canvas class=' + skicons + '></canvas></div>' +
+        '<br><div><b>Day</b>:&nbsp&nbsp&nbsp&nbsp&nbsp ' + date.toLocaleDateString() + '</div>' +
+        '<div><b>Temperature</b>:&nbsp&nbsp&nbsp&nbsp&nbsp ' + temp  + '°' + '</div>' +
+        '<div><b>Max Temp.</b>:&nbsp&nbsp&nbsp&nbsp&nbsp ' + tempMax   + '°' + '</div>' +
+        '<div><b>Humidity</b>:&nbsp&nbsp&nbsp&nbsp&nbsp ' + humidity + '</div>' +
+        '<p class="summary">' + summary + '</p>' +
+        '</div></div><div class="back card"></div></div></div></li>'
       );
-      switch (day) {
+      switch (days) {
       case 'Sunday':
         hourlyReport(sunday, days[0]);
         break;
@@ -136,7 +136,7 @@ function weatherReport(latitude, longitude) {
     
      
     // Agregando datos para el dia en curso
-        $('#forecastWeek').append(
+      $('#forecastWeek').append(
       '<div class=" shade-' + forecast.daily.data[0].icon + '"><div"><div><div class="front card"><div>' + '<div class=\'graphic\'><h3 class=\'center\'>' + days[date.getDay()]+ '</h3><br><br><canvas class=' + forecast.daily.data[0].icon + '></canvas></div><br><div><b>Day</b>: &nbsp&nbsp&nbsp&nbsp&nbsp ' + new Date(forecast.daily.data[0].time * 1000).toLocaleDateString() + '</div>' + '<div><b>Temperature</b>: &nbsp&nbsp&nbsp&nbsp&nbsp' + Math.round(fToC(forecast.hourly.data[0].temperature)) +'°'+ '</div>' +
       '<div><b>Max Temp.</b>: &nbsp&nbsp&nbsp&nbsp&nbsp' + Math.round(fToC(forecast.daily.data[0].temperatureMax)) + '°' +'</div>' +
       '<div><b>Humidity</b>: &nbsp&nbsp&nbsp&nbsp&nbsp' + Math.round(forecast.daily.data[0].humidity * 100) + '%' +'</div>' +
@@ -185,18 +185,44 @@ $('body').on('click', '#back', function() {
 
 
 // Api Google maps
+function insertGoogleScript() {
+  var googleApi = document.createElement('script'),
+    cityName = 'AIzaSyAnhhd9cMSlPq7sss2LM2TNnp5JiTcx78s';
+    googleApi.src = 'https://maps.googleapis.com/maps/api/js?key=' + cityName + '&callback=initGoogleAPI&libraries=places,geometry';
+    document.body.appendChild(googleApi);
+}
 
+// SearchBox Method
+function initGoogleAPI() {
+  var autocomplete = new google.maps.places.SearchBox(document.querySelector('#city-search'));
 
+  autocomplete.addListener('places_changed', function() {
+    var place = autocomplete.getPlaces()[0];
+    document.querySelector('#latitude').value = place.geometry.location.lat();
+    document.querySelector('#longitude').value = place.geometry.location.lng();
+  });
+  initMap();
+}
 
 function initMap() {
   var uluru = {lat: -12.145552,lng: -77.022321};
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 8,
+    zoom: 4,
     center: uluru 
   });
-    var marker = new google.maps.Marker({
-      position: uluru,
-      map: map
+  var marker = new google.maps.Marker({
+    position: uluru,
+    draggable: true,
+    map: map
+  });
+    marker.setMap(map);
+  
+    // Para seleccionar en el mapa tu ubicacion
+
+  google.maps.event.addListener(marker, 'dragend', function() {
+    // alert('Latitud = '+marker.getPosition().lat()+ ', Longitud = '+marker.getPosition().lng());
+    document.querySelector('#latitude').value = marker.getPosition().lat();
+    document.querySelector('#longitude').value = marker.getPosition().lng();
   });
 
   function search() {
@@ -213,25 +239,6 @@ function initMap() {
     var functionError = function functionError(error) {
     alert('Tenemos un problema con encontrar tu ubicación');
   };
+  
 }
-
-// SearchBox Method
-function initGoogleAPI() {
-  var autocomplete = new google.maps.places.SearchBox(document.querySelector('#city-search'));
-
-  autocomplete.addListener('places_changed', function() {
-    var place = autocomplete.getPlaces()[0];
-    document.querySelector('#latitude').value = place.geometry.location.lat();
-    document.querySelector('#longitude').value = place.geometry.location.lng();
-  });
-}
-
-function insertGoogleScript() {
-  var googleApi = document.createElement('script'),
-    cityName = 'AIzaSyAnhhd9cMSlPq7sss2LM2TNnp5JiTcx78s';
-    googleApi.src = 'https://maps.googleapis.com/maps/api/js?key=' + cityName + '&callback=initGoogleAPI&libraries=places,geometry';
-    document.body.appendChild(googleApi);
-}
-
 insertGoogleScript();
-
