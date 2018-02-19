@@ -7,7 +7,7 @@ App Weather es una plataforma para conocer el clima de tu localizacion actual,ta
 
 ![image-git](https://user-images.githubusercontent.com/32303587/36364233-da85789a-1510-11e8-8e8a-a13e52db2918.png)
 
-Desarrollado para ![Laboratoria](http://laboratoria.la)
+Desarrollado para [Laboratoria](http://laboratoria.la)
 
 ## FLUJO
 1. Obtener las **APIKeys** de los Api's a utilizar.
