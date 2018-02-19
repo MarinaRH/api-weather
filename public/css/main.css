@@ -278,7 +278,7 @@ button:not(#next):hover {
 	border-radius: 2px;
 	margin: 1rem 0.5rem;
 	padding: 0.5rem;
-	background: #157279be;
+  background: #157279be;
 }
 
 .card {
