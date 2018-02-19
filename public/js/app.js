@@ -138,9 +138,9 @@ function weatherReport(latitude, longitude) {
     
     // Agregando clima para el dia en curso
       $('#forecastWeek').append(
-      '<div class=" shade-' + forecast.daily.data[0].icon + '"><div"><div><div class="front card"><div>' + '<div class=\'graphic\'><h3 class=\'center\'>' + days[new Date(data[i].time * 1000).getDay()] + '</h3><br><br><canvas class=' + forecast.daily.data[0].icon + '></canvas></div><br><div><b>Day</b>:' + new Date(forecast.daily.data[0].time * 1000).toLocaleDateString() + '</div>' + '<div><b>Temperature</b>:' + Math.round(fToC(forecast.hourly.data[0].temperature)) +'°'+ '</div>' +
-      '<div><b>Max Temp.</b>:' + Math.round(fToC(forecast.daily.data[0].temperatureMax)) + '°' +'</div>' +
-      '<div><b>Humidity</b>:' + Math.round(forecast.daily.data[0].humidity * 100) + '%' +'</div>' +
+      '<div class=" shade-' + forecast.daily.data[0].icon + '"><div"><div><div class="front card"><div>' + '<div class=\'graphic\'><h3 class=\'center\'>' + days[new Date(data[i].time * 1000).getDay()] + '</h3><br><br><canvas class=' + forecast.daily.data[0].icon + '></canvas></div><br><div><b>Day</b>:&nbsp&nbsp&nbsp&nbsp&nbsp' + new Date(forecast.daily.data[0].time * 1000).toLocaleDateString() + '</div>' + '<div><b>Temperature</b>:&nbsp&nbsp&nbsp&nbsp&nbsp  ' + Math.round(fToC(forecast.hourly.data[0].temperature)) +'°'+ '</div>' +
+      '<div><b>Max Temp.</b>: &nbsp&nbsp&nbsp&nbsp&nbsp' + Math.round(fToC(forecast.daily.data[0].temperatureMax)) + '°' +'</div>' +
+      '<div><b>Humidity</b>: &nbsp&nbsp&nbsp&nbsp&nbsp ' + Math.round(forecast.daily.data[0].humidity * 100) + '%' +'</div>' +
       '<p class="summary">' + forecast.daily.data[0].summary + '</p>' +
       '</div></div><div class="back card"></div></div></div></div>'
     );

@@ -1,14 +1,13 @@
-# DARK SKY WEATHER
-
-* **Track:** _ESPECIALIZACION_
-* **Curso:** _CONSTRUYE UNA SINGLE PAGE APP (SPA) MULTI-USUARIO CONSUMIENDO DATA REMOTA_
-* **Unidad:** _JUGANDO CON WEB APIS_
+# APP WEATHER
 
 ***
 
-## OBJETIVO
+App Weather es una plataforma para conocer el clima de tu localizacion actual,también tienes la opcion de ingresar una nueva direccion y obtener la temperatura del dia y de los 7 dias siguientes.Y para terminar cuentas con una tercera forma de ver el clima,tan solo marcando una nueva direccion en el mapa.
 
-* ¿Has visto que los sistemas operativos móviles vienen con una APP de predicción del clima? ¡Vamos a hacer la nuestra! Para ello, usaremos la API de Dark Sky y esperemos llegues a usar un API de imágenes como Flickr, Unsplash u otro. A continuación te dejamos unos slides con algunos recursos y guías del flujo de la app. Recuerda que no es necesario que sigas el diseño al pie de la letra, eres completamente libre de adaptarlo a tus gustos.
+
+![image-git](https://user-images.githubusercontent.com/32303587/36364233-da85789a-1510-11e8-8e8a-a13e52db2918.png)
+
+Desarrollado para ![Laboratoria](http://laboratoria.la)
 
 ## FLUJO
 1. Obtener las **APIKeys** de los Api's a utilizar.
@@ -28,12 +27,6 @@
 8. Con el Api de **Dark Sky Weather** obtenemos la temperatura actual ,la temperatura máxima,el porcentaje de humedad y una pequeña descripcion del clima.Tambien tenemos la opcion de ver la temperatura que se tendrá en el resto de la semana.
 
 9. Utilizando el Api de **Unplash** obtendremos imagenes aleatorias que serán colocadas como fondo de la página,en este caso utilizando la cátegoria de naturaleza.
-
-## DEMO
-
-![inicio](public/assets/desktop.png)
-
-![mobil](public/assets/mobil.png)
 
 ## RECURSOS
 
