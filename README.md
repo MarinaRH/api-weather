@@ -1,7 +1,5 @@
 # APP WEATHER
 
-***
-
 App Weather es una plataforma para conocer el clima de tu localizacion actual,también tienes la opcion de ingresar una nueva direccion y obtener la temperatura del dia y de los 7 dias siguientes.Y para terminar cuentas con una tercera forma de ver el clima,tan solo marcando una nueva direccion en el mapa.
 
 
