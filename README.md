@@ -1,11 +1,11 @@
 # APP WEATHER
 
-App Weather es una plataforma para conocer el clima de tu localizacion actual,también tienes la opcion de ingresar una nueva direccion y obtener la temperatura del dia y de los 7 dias siguientes.Y para terminar cuentas con una tercera forma de ver el clima,tan solo marcando una nueva direccion en el mapa.
+App Weather es una plataforma que ayuda a conocer el clima de tu localización actual tanto del dia como del resto de la semana,en una segunda opción puedes ingresar una nueva localización para obtener la temperatura de  dicha ubicación.Cuentas con una tercera forma de ver el clima,tan solo marcando una nueva ubicación en el mapa.
 
 
 ![image-git](https://user-images.githubusercontent.com/32303587/36364233-da85789a-1510-11e8-8e8a-a13e52db2918.png)
 
-Desarrollado para [Laboratoria](http://laboratoria.la)
+## Desarrollado para [Laboratoria](http://laboratoria.la)
 
 ## FLUJO
 1. Obtener las **APIKeys** de los Api's a utilizar.
